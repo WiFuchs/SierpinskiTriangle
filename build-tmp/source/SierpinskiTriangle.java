@@ -1,4 +1,20 @@
-color c;
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class SierpinskiTriangle extends PApplet {
+
+int c;
 ArrayList<Mover> points = new ArrayList<Mover>();
 
 public void setup() {
@@ -40,22 +56,31 @@ class Mover {
 	int myY;
 	int destX;
 	int destY;
-	color colr;
-	Mover(int x, int y, int dX, int dY, color clr){
+	int colr;
+	Mover(int x, int y, int dX, int dY, int clr){
 		myX=x;
 		myY=y;
 		destX=dX;
 		destY=dY;
 		colr = clr;
 	}
-	void move(){
+	public void move(){
 		if(myX>destX){myX--;}
 		if(myX<destX){myX++;}
 		if(myY>destY){myY--;}
 		if(myY<destY){myY++;}
 	}
-	void show(){
+	public void show(){
 		fill(colr);
 		ellipse(myX, myY, 3, 3);
 	}
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "SierpinskiTriangle" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
